@@ -1,0 +1,41 @@
+BRUTE FORCE:
+class Solution {
+    public int maxProfit(int[] prices) {
+        int n = prices.length;
+        int maxProfit = 0;
+
+        // Try all buy days
+        for (int i = 0; i < n; i++) {
+            // Try all sell days after buy day
+            for (int j = i + 1; j < n; j++) {
+                int profit = prices[j] - prices[i];
+                maxProfit = Math.max(maxProfit, profit);
+            }
+        }
+
+        return maxProfit;
+    }
+}
+
+
+I/P: [7, 1, 5, 3, 6, 4]
+O/P:5
+
+GREEDY ALGORITHM:
+class Solution {
+    public int maxProfit(int[] prices) {
+
+        int minPrice = prices[0];
+        int maxProfit = 0;
+
+        for (int i = 1; i < prices.length; i++) {
+
+            int profit = prices[i] - minPrice;
+            maxProfit = Math.max(maxProfit, profit);
+
+            minPrice = Math.min(minPrice, prices[i]);
+        }
+
+        return maxProfit;
+    }
+}
