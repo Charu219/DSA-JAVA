@@ -1,0 +1,34 @@
+import java.util.Scanner;
+import java.util.HashSet;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner in= new Scanner(System.in);
+        int n=in.nextInt();
+        int arr[]= new int[n];
+        
+        for(int i=0;i<n;i++){
+            arr[i]=in.nextInt();
+        }
+        
+        HashSet <Integer> set= new HashSet <>();
+        boolean dupli=false;
+        
+        for(int num:arr){
+            if(set.contains(num)){
+                dupli=true;
+                break;
+            }
+            set.add(num);
+        }
+        
+        System.out.println(dupli);
+    }
+}
+
+Input
+4
+1 2 3 1
+
+Output
+true
