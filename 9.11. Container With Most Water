@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class ContainerWithMostWater {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Step 1: Read size
+        int n = sc.nextInt();
+        int[] height = new int[n];
+
+        // Step 2: Read heights
+        for (int i = 0; i < n; i++) {
+            height[i] = sc.nextInt();
+        }
+
+        // Step 3: Two pointer initialization
+        int left = 0;
+        int right = n - 1;
+        int maxWater = 0;
+
+        // Step 4: Two pointer traversal
+        while (left < right) {
+
+            int width = right - left;
+            int minHeight = Math.min(height[left], height[right]);
+            int water = width * minHeight;
+
+            maxWater = Math.max(maxWater, water);
+
+            // Move smaller height pointer
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        // Step 5: Output
+        System.out.println(maxWater);
+
+        sc.close();
+    }
+}
+` `
