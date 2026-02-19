@@ -1,0 +1,32 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner in= new Scanner(System.in);
+        
+        String str=in.nextLine();
+        
+        int left=0;
+        int right=str.length()-1;
+        
+        while(left<right){
+            while(left<right && !Character.isLetterOrDigit(str.charAt(left))){
+                left++;
+            }
+            
+            while(left<right && !Character.isLetterOrDigit(str.charAt(right))){
+                right--;
+            }
+            
+            
+            if(Character.toLowerCase(str.charAt(left))!=
+            Character.toLowerCase(str.charAt(right))){
+                System.out.println("not palindrome");
+                return;
+            }
+            left++;
+            right--;
+        }
+        
+        System.out.println("palindrome");
+    }
+}
