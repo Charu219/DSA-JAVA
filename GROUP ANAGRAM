@@ -1,0 +1,48 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner in= new Scanner(System.in);
+        
+        int n=in.nextInt();
+        
+        in.nextLine(); // reads the nextline or else takes only one word as string
+        
+        String []words=new String[n];
+        
+        for(int i=0;i<n;i++){
+            words[i]=in.nextLine();
+        }
+        
+        HashMap<String, List<String>> map=new HashMap<>();
+        
+        for(String word:words){
+        char[] chars= word.toCharArray();
+        Arrays.sort(chars);
+        
+        String key= new String(chars);
+        
+        if (!map.containsKey(key)){
+            map.put(key, new ArrayList<>());
+            
+        }
+        map.get(key).add(word);
+        }
+        
+        for(List<String> group:map.values()){
+            System.out.println(group);
+        }
+        
+    }
+}
+
+i/p ==>
+
+
+
+
+o/p==
+[
+  ["eat","tea","ate"],
+  ["tan","nat"],
+  ["bat"]
+]
