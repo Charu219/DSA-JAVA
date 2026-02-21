@@ -1,0 +1,89 @@
+STRING COMPRESSION MEANS:
+If a character repeats:
+   Write the character
+   Then write the count (only if count > 1)
+
+PROGRAMME:
+LEETCODE :
+class Solution {
+    public int compress(char[] chars) {
+
+        int index = 0;   // write pointer
+        int i = 0;       // read pointer
+
+        while (i < chars.length) {
+
+            char current = chars[i];
+            int count = 0;
+
+            while (i < chars.length && chars[i] == current) {
+                i++;
+                count++;
+            }
+
+            chars[index++] = current;
+
+            if (count > 1) {
+                String countStr = String.valueOf(count);
+                for (char c : countStr.toCharArray()) {
+                    chars[index++] = c;
+                }
+            }
+        }
+
+        return index;
+    }
+}
+
+
+
+
+NORMALLY:
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+
+        char[] chars = input.toCharArray();
+
+        int index = 0;  // write pointer
+        int i = 0;      // read pointer
+
+        while (i < chars.length) {
+
+            char current = chars[i];
+            int count = 0;
+
+            // Count same characters
+            while (i < chars.length && chars[i] == current) {
+                i++;
+                count++;
+            }
+
+            // Write character
+            chars[index++] = current;
+
+            // Write count if >1
+            if (count > 1) {
+                String countStr = String.valueOf(count);
+                for (char c : countStr.toCharArray()) {
+                    chars[index++] = c;
+                }
+            }
+        }
+
+        // Print compressed result
+        for (int k = 0; k < index; k++) {
+            System.out.print(chars[k]);
+        }
+
+        System.out.println();
+        System.out.println("New Length: " + index);
+
+        sc.close();
+    }
+}
