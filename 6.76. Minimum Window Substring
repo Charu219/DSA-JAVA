@@ -1,0 +1,62 @@
+import java.util.*;
+public class Main{
+public static void main(String[] args){
+Scanner in=  new Scanner(System.in);
+
+String s=in.nextLine();
+String t=in.nextLine();
+
+if(s.length()<t.length()){
+    System.out.println("invalid");
+    return;
+}
+
+HashMap<Character, Integer> map= new HashMap<>();
+for(int i=0;i<t.length();i++){
+    char c=t.charAt(i);
+    map.put(c,map.getOrDefault(c,0)+1);
+}
+
+
+int count=t.length();
+int left=0;
+int minlen=Integer.MAX_VALUE;
+int start=0;
+
+for(int right=0; right<s.length();right++){
+    
+    char rchar=s.charAt(right);
+    
+    if(map.containsKey(rchar)){
+        if(map.get(rchar)>0){
+            count--;
+        }
+        map.put(rchar,map.get(rchar)-1);
+        
+    }
+    
+    while(count==0){
+        if(right-left+1<minlen){
+            minlen=right-left+1;
+            start=left;
+        }
+        
+        char lchar=s.charAt(left);
+        
+        if(map.containsKey(lchar)){
+            map.put(lchar,map.get(lchar)+1);
+            if(map.get(lchar)>0){
+                count++;
+            }
+        }
+        left++;
+    }
+}
+
+ if (minlen == Integer.MAX_VALUE) {
+            System.out.println("Minimum Window: ");
+        } else {
+            System.out.println("Minimum Window: " + s.substring(start, start + minlen));
+        }
+    }
+}
