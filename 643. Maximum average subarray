@@ -1,0 +1,30 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner in= new Scanner(System.in);
+        
+        int n=in.nextInt();
+        
+        int [] arr=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=in.nextInt();
+        }
+        
+         int k =in.nextInt();
+         
+         int sum=0;
+         
+         for(int i=0;i<k;i++){
+             sum =sum+arr[i];
+         }
+         
+         int maxsum=sum;
+         
+         for(int i=k;i<arr.length;i++){
+             sum=sum-arr[i-k]+arr[i];
+             maxsum=Math.max(sum,maxsum);
+             }
+        
+       System.out.println((double) maxsum/k);
+    }
+}
