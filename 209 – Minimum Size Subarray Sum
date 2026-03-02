@@ -26,6 +26,11 @@ public class Main{
         }
     }
     
+    if(minlen==Integer.MAX_VALUE){
+        System.out.println(0);
+    }
+    else{
     System.out.println(minlen);
+    }
     }
 }
