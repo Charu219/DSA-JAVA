@@ -1,0 +1,55 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        
+        int left = 0;
+        int right = s.length() - 1;
+        boolean result = true;
+        
+        while (left < right) {
+            
+            if (s.charAt(left) != s.charAt(right)) {
+                
+                // Try skipping left
+                int l1 = left + 1;
+                int r1 = right;
+                boolean skipLeft = true;
+                
+                while (l1 < r1) {
+                    if (s.charAt(l1) != s.charAt(r1)) {
+                        skipLeft = false;
+                        break;
+                    }
+                    l1++;
+                    r1--;
+                }
+                
+                // Try skipping right
+                int l2 = left;
+                int r2 = right - 1;
+                boolean skipRight = true;
+                
+                while (l2 < r2) {
+                    if (s.charAt(l2) != s.charAt(r2)) {
+                        skipRight = false;
+                        break;
+                    }
+                    l2++;
+                    r2--;
+                }
+                
+                result = skipLeft || skipRight;
+                break;
+            }
+            
+            left++;
+            right--;
+        }
+        
+        System.out.println(result);
+    }
+}
