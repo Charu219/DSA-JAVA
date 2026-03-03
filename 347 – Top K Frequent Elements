@@ -1,0 +1,45 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner in= new Scanner(System.in);
+        
+        int n=in.nextInt();
+        int []arr=new int[n];
+        
+        for(int i=0;i<n;i++){
+            arr[i]=in.nextInt();
+        }
+        int k=in.nextInt();
+        
+        HashMap <Integer,Integer>map=new HashMap<>();
+        for(int num:arr){
+        map.put(num,map.getOrDefault(num,0)+1);
+        }
+        
+        PriorityQueue<Integer> pq= new PriorityQueue<>(
+            (a,b) -> map.get(a)-map.get(b)
+            );
+            
+            for(int num:map.keySet()){
+                pq.add(num);
+                
+                if(pq.size()>k){
+                    pq.poll();
+                }
+            }
+            
+            int [] res=new int[k];
+            for(int i=k-1;i>=0;i--){
+                res[i]=pq.poll();
+            }
+        
+        for(int i=0;i<k;i++){
+            System.out.print(res[i]+" ");
+        }
+    }
+}
+
+
+I/P=[1,1,1,2,2,3]
+K=2
+O/P=[1,2]
