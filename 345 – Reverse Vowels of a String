@@ -1,0 +1,87 @@
+COMPLEX METHOD:
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        String str= in.nextLine();
+        
+        char [] c= str.toCharArray();
+        
+        int left=0;
+        int r=c.length-1;
+        
+        while(left<r){
+            
+            while(left<r && c[left]!='a' && c[left]!='e' && c[left]!='i'
+            && c[left]!='o' && c[left]!='u' && c[left]!='A' && c[left]!='E'
+            && c[left]!='I' && c[left]!='O' && c[left]!='U'){
+                left++;
+            }
+            
+             while(left<r && c[r]!='a' && c[r]!='e' && c[r]!='i'
+            && c[r]!='o' && c[r]!='u' && c[r]!='A' && c[r]!='E'
+            && c[r]!='I' && c[r]!='O' && c[r]!='U'){
+                r--;
+            }
+            
+            char temp=c[left];
+            c[left]=c[r];
+            c[r]=temp;
+            
+            left++;
+            r--;
+            
+        }
+        
+        System.out.print(new String(c));
+        
+
+    }
+    }
+
+
+
+
+
+SIMPLE METHOD
+
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        String str= in.nextLine();
+        
+        char [] c= str.toCharArray();
+        
+        int left=0;
+        int r=c.length-1;
+        
+        while(left<r){
+            
+            while(left<r && "aeiouAEIOU".indexOf(c[left])==-1 ){
+                left++;
+            }
+            
+             while(left<r && "aeiouAEIOU".indexOf(c[r])==-1 ){
+                r--;
+            }
+            
+            char temp=c[left];
+            c[left]=c[r];
+            c[r]=temp;
+            
+            left++;
+            r--;
+            
+        }
+        
+        System.out.print(new String(c));
+        
+
+    }
+    }
