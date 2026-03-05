@@ -54,3 +54,32 @@ public class Main {
                 + s.substring(start, end + 1));
     }
 }
+
+3. Longest Substring Without Repeating Characters
+
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner in= new Scanner(System.in);
+        
+        String word=in.nextLine();
+        
+        HashSet<Character> set=new HashSet<>();
+        int left=0;
+        int maxlen=0;
+        
+        for(int right=0;right<word.length();right++){
+            
+            while(set.contains(word.charAt(right))){
+                set.remove(word.charAt(left));
+                left++;
+            }
+            
+            set.add(word.charAt(right));
+            maxlen=Math.max(maxlen,right-left+1);
+        }
+        
+        System.out.print(maxlen);
+    }
+}
+
