@@ -1,0 +1,35 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner in= new Scanner(System.in);
+        
+        String s1=in.nextLine();
+        String s2=in.nextLine();
+        
+        int[] s1count=new int[26];
+        int[] windowscount=new int[26];
+        
+        int left=0;
+        for(int c: s1.toCharArray()){
+            s1count[c-'a']++;
+        }
+        
+        for(int right=0; right<s2.length();right++){
+            
+            windowscount[s2.charAt(right)-'a']++;
+        
+          if(right-left+1>s1.length()){
+              windowscount[s2.charAt(left)-'a']--;
+              left++;
+          }
+          
+          if(Arrays.equals(s1count,windowscount)){
+              System.out.println(true);
+              return;
+          }
+        }
+        System.out.println(false);
+        return;
+        
+    }
+}
