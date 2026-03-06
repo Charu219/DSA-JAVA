@@ -1,0 +1,30 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner in=new Scanner(System.in);
+        
+        String s=in.nextLine();
+        String p=in.nextLine();
+        
+        int left=0;
+        int [] scount=new int[26];
+        int [] pcount=new int[26];
+        
+        for(int c:p.toCharArray()){
+            pcount[c-'a']++;
+        }
+        
+        for(int right=0;right<s.length();right++){
+            scount[s.charAt(right)-'a']++;
+            
+            if(right-left+1>p.length()){
+                scount[s.charAt(left)-'a']--;
+                left++;
+            } 
+            
+            if(Arrays.equals(scount,pcount)){
+                System.out.println(left);
+            }
+        }
+    }
+}
