@@ -1,0 +1,30 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner in= new Scanner(System.in);
+        
+        String s= in.nextLine();
+        int n= in.nextInt();
+        
+        in.nextLine();
+        
+        List<String> worddict= new ArrayList<>();
+        for(int i=0;i<n;i++){
+        worddict.add(in.nextLine());
+        }
+        
+        HashSet<String> set=new HashSet<>(worddict);
+        
+        boolean [] dp= new boolean[s.length()+1];
+        dp[0]=true;
+        for(int i=1;i<=s.length();i++){
+            for(int j=0;j<i;j++){
+                if(dp[j] && set.contains(s.substring(j,i))){
+                    dp[i]=true;
+                    break;
+                }
+            }
+        }
+        System.out.println(dp[s.length()]);
+    }
+}
