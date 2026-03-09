@@ -1,0 +1,44 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        
+        String str= in.nextLine();
+        Stack<Integer> countnum= new Stack<>();
+        Stack<String> countchar= new Stack<>();
+        
+        int currnum=0;
+        String currchar="";
+        
+        for(char c:str.toCharArray()){
+            if(Character.isDigit(c)){
+             currnum= currnum*10+(c-'0');
+            }
+            
+            else if(c=='['){
+                countnum.push(currnum);
+                countchar.push(currchar);
+                
+                currnum=0;
+                currchar="";
+            }
+            
+            else if(c==']'){
+               int  prevnum=countnum.pop();
+               String  prevchar=countchar.pop();
+                
+        StringBuilder temp= new StringBuilder (prevchar);
+        for(int i=0;i<prevnum;i++){
+            temp.append(currchar);
+        }
+        currchar= new String(temp);
+                
+                }
+            else{
+                currchar+=c;
+            }
+        }
+        
+        System.out.println(currchar);
+    }
+}
