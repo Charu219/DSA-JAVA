@@ -1,0 +1,50 @@
+class Listnode{
+    int val;
+    Listnode next; 
+    
+    Listnode(int val){
+        this.val=val;
+        this.next=null;
+    }
+}
+
+class solution{
+    public boolean hascycle(Listnode head){
+       if(head==null){
+           return false;
+       }
+       Listnode slow=head;
+       Listnode fast=head;
+       
+       while(fast!=null && fast.next!=null){
+           slow=slow.next;
+           fast=fast.next.next;
+           
+           if(slow==fast){
+               return true;
+           }
+       }
+       return false;
+    } 
+}
+
+
+public class Main{
+    public static void main(String[] args){
+        
+        Listnode head=new Listnode(3);
+        Listnode second= new Listnode(2);
+        Listnode third= new Listnode(0);
+        Listnode fourth= new Listnode(-4);
+        
+        head.next=second;
+        second.next=third;
+        third.next=fourth;
+        fourth.next=second;
+        
+        solution obj= new solution();
+        boolean res= obj.hascycle(head);
+        
+        System.out.println(res);
+    }
+}
