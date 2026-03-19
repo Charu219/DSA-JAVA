@@ -1,0 +1,33 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        int n=in.nextInt();
+        int [] nums= new int[n];
+        
+        for(int i=0;i<n;i++){
+            nums[i]=in.nextInt();
+        }
+        
+        int [] count = new int[n+1];
+        for(int c: nums){
+            if(c>=n){
+                count[n]++;
+            }
+            else{
+                count[c]++;
+            }
+        }
+        
+        int tot=0;
+        for(int i=n;i>=0;i--){
+            tot+=count[i];
+            if(tot>=i){
+                System.out.println(i);
+                break;
+            }
+        }
+        
+        return;
+    }
+}
